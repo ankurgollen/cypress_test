@@ -57,7 +57,7 @@ describe('Create Booking cases',()=>{
         })
     })
 
-    it('User should not be able to book without any value null',()=>{
+    it('User should not be able to book with any value null',()=>{
         cy.request({
             //Creating a new booking
             method:'POST',
