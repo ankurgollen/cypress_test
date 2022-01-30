@@ -1,0 +1,130 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-01-27T14:39:22.167Z",
+    "end": "2022-01-27T14:39:25.053Z",
+    "duration": 2886,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c0c02ab5-c5c3-407a-89a5-6b6deea25e51",
+      "title": "",
+      "fullFile": "cypress/integration/api_tests/gettest.js",
+      "file": "cypress/integration/api_tests/gettest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "33b9e939-a1d5-4f80-b396-051613cd10d2",
+          "title": "CRUD Test cases",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "get users",
+              "fullTitle": "CRUD Test cases get users",
+              "timedOut": null,
+              "duration": 2435,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('bookingDetails').then(payload => {\n  cy.request({\n    //Creating a new booking\n    method: 'POST',\n    url: BaseURL + '/booking',\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: {\n      \"firstname\": payload.firstname,\n      \"lastname\": payload.lastname,\n      \"totalprice\": payload.totalprice,\n      \"depositpaid\": payload.depositpaid,\n      \"bookingdates\": payload.bookingdates,\n      \"additionalneeds\": payload.additionalneeds\n    }\n  }).then(res => {\n    expect(res.status).to.equal(200);\n  }).then(res => {\n    const bookingID = res.body.bookingid;\n    cy.log(\"Booking ID is \" + bookingID);\n  });\n});",
+              "err": {
+                "message": "AssertionError: expected 500 to equal 200",
+                "estack": "AssertionError: expected 500 to equal 200\n    at Context.eval (http://localhost:55222/__cypress/tests?p=cypress/integration/api_tests/gettest.js:121:31)",
+                "diff": "- 500\n+ 200\n"
+              },
+              "uuid": "ebce1402-898f-4727-bfcc-c81661936b1d",
+              "parentUUID": "33b9e939-a1d5-4f80-b396-051613cd10d2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get booking",
+              "fullTitle": "CRUD Test cases Get booking",
+              "timedOut": null,
+              "duration": 398,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: BaseURL + '/booking/1',\n  headers: {\n    'Content-Type': 'application/json'\n  }\n}).then(res => {\n  expect(res.status).to.equal(200);\n});",
+              "err": {},
+              "uuid": "8bf1a3c2-a6f6-47e6-b07e-306116b1f3e1",
+              "parentUUID": "33b9e939-a1d5-4f80-b396-051613cd10d2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8bf1a3c2-a6f6-47e6-b07e-306116b1f3e1"
+          ],
+          "failures": [
+            "ebce1402-898f-4727-bfcc-c81661936b1d"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 2833,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "reporterDir": "cypress/report/mochawesome-reports",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.0.1"
+    }
+  }
+}

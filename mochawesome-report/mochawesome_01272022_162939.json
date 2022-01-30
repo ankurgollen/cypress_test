@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-01-27T10:59:32.353Z",
+    "end": "2022-01-27T10:59:39.467Z",
+    "duration": 7114,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9019a784-6878-4f03-9dfe-55106990ae83",
+      "title": "",
+      "fullFile": "cypress/integration/test-cases/first_test.js",
+      "file": "cypress/integration/test-cases/first_test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d02c72dc-4ee8-4b6a-964c-0f37dcc45d79",
+          "title": "Login Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Login test",
+              "fullTitle": "Login Suite Login test",
+              "timedOut": null,
+              "duration": 4574,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange\ncy.visit('http://uitestingplayground.com/home'); //act\ncy.wrap('passed').as('ctrl');\ncy.get(\"a:not([href*='mailto:]']\").each($el => {\n  if ($el.prop('href').length > 0) {\n    const message = $el.text();\n    expect($el, message).to.have.attr(\"href\").not.contain(\"undefined\");\n    cy.log($el.attr('href'));\n  }\n}); //Assert",
+              "err": {},
+              "uuid": "a494d34e-74d1-40ce-abe0-c3345bd80467",
+              "parentUUID": "d02c72dc-4ee8-4b6a-964c-0f37dcc45d79",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a494d34e-74d1-40ce-abe0-c3345bd80467"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4574,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "reporterDir": "cypress/report/mochawesome-reports",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.0.1"
+    }
+  }
+}

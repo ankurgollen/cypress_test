@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-01-30T09:03:45.986Z",
+    "end": "2022-01-30T09:03:47.531Z",
+    "duration": 1545,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "78ebf70d-86fa-446a-afc8-b6772fc0359b",
+      "title": "",
+      "fullFile": "cypress/integration/api_tests/get_booking.js",
+      "file": "cypress/integration/api_tests/get_booking.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1666b799-d8e3-44c2-91b6-b98ba0087488",
+          "title": "Get Details about bookings testcases",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User should be able to get details about any random booking",
+              "fullTitle": "Get Details about bookings testcases User should be able to get details about any random booking",
+              "timedOut": null,
+              "duration": 800,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting some random booking ids\n  method: 'GET',\n  url: BaseURL + '/booking',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  }\n}).then(res => {\n  //Getting one bookingid and then using it to get details of that booking\n  const bookingID = res.body[0].bookingid;\n  expect(res.status).to.equal(200);\n  cy.log(bookingID);\n  cy.request({\n    method: 'GET',\n    url: BaseURL + '/booking/' + bookingID,\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json'\n    }\n  }).then(res => {\n    //Verifying booking details exist\n    expect(res.status).to.equal(200);\n    expect(res.body.firstname).to.exist;\n    expect(res.body.lastname).to.exist;\n    expect(res.body.totalprice).to.exist;\n    expect(res.body.depositpaid).to.exist;\n    expect(res.body.bookingdates.checkin).to.exist;\n    expect(res.body.bookingdates.checkout).to.exist;\n  });\n});",
+              "err": {},
+              "uuid": "8a0cebf3-7d96-4fcb-8c47-84d346f34eae",
+              "parentUUID": "1666b799-d8e3-44c2-91b6-b98ba0087488",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User should not be getting any data with wrong booking id",
+              "fullTitle": "Get Details about bookings testcases User should not be getting any data with wrong booking id",
+              "timedOut": null,
+              "duration": 344,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting details of a non existent booking\n  method: 'GET',\n  url: BaseURL + '/booking/0',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  }\n}).then(res => {\n  //Verfiying that error 404 is thrown in case of non existent booking id\n  expect(res.status).to.equal(404);\n});",
+              "err": {},
+              "uuid": "6535d495-5ed5-4807-b32e-902ede2bdc5b",
+              "parentUUID": "1666b799-d8e3-44c2-91b6-b98ba0087488",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User should be getting data without any header types",
+              "fullTitle": "Get Details about bookings testcases User should be getting data without any header types",
+              "timedOut": null,
+              "duration": 380,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting details of a booking\n  method: 'GET',\n  url: BaseURL + '/booking/8',\n  failOnStatusCode: false // headers:{\n  //     'Content-Type': 'text/xml'\n  // }\n}).then(res => {\n  //Verifying the details exist\n  expect(res.status).to.equal(200);\n  expect(res.body.firstname).to.exist;\n  expect(res.body.lastname).to.exist;\n  expect(res.body.totalprice).to.exist;\n  expect(res.body.depositpaid).to.exist;\n  expect(res.body.bookingdates.checkin).to.exist;\n  expect(res.body.bookingdates.checkout).to.exist;\n});",
+              "err": {},
+              "uuid": "33e8e1aa-851c-41dd-ad38-87a7fea8e036",
+              "parentUUID": "1666b799-d8e3-44c2-91b6-b98ba0087488",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a0cebf3-7d96-4fcb-8c47-84d346f34eae",
+            "6535d495-5ed5-4807-b32e-902ede2bdc5b",
+            "33e8e1aa-851c-41dd-ad38-87a7fea8e036"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1524,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.0.1"
+    }
+  }
+}

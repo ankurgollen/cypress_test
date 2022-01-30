@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-01-30T09:03:57.254Z",
+    "end": "2022-01-30T09:03:59.186Z",
+    "duration": 1932,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5b1108a7-7c2d-4db7-94dd-6caead86e4e3",
+      "title": "",
+      "fullFile": "cypress/integration/api_tests/update_booking.js",
+      "file": "cypress/integration/api_tests/update_booking.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9bd5defc-80e4-496d-b330-95e1d80ee873",
+          "title": "Updating details of Bookings",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Updating a booking without auth token",
+              "fullTitle": "Updating details of Bookings Updating a booking without auth token",
+              "timedOut": null,
+              "duration": 363,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Trying to update a booking without API call\n  method: 'PUT',\n  url: BaseURL + '/booking/21',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: {\n    \"firstname\": payload.firstname,\n    \"lastname\": payload.lastname,\n    \"totalprice\": payload.totalprice,\n    \"depositpaid\": payload.depositpaid,\n    \"bookingdates\": payload.bookingdates,\n    \"additionalneeds\": payload.additionalneeds\n  }\n}).then(res => {\n  //User should be forbidden from updating without any autherization\n  expect(res.status).to.equal(403);\n});",
+              "err": {},
+              "uuid": "700ed6e2-5285-4467-9181-2d36bfab136d",
+              "parentUUID": "9bd5defc-80e4-496d-b330-95e1d80ee873",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Updating a booking with auth token",
+              "fullTitle": "Updating details of Bookings Updating a booking with auth token",
+              "timedOut": null,
+              "duration": 757,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting the Auth token\n  method: 'POST',\n  url: BaseURL + '/auth',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: {\n    \"username\": \"admin\",\n    \"password\": \"password123\"\n  }\n}).then(res => {\n  //\n  expect(res.status).to.equal(200);\n  const authtoken = res.body.token;\n  cy.log('Token is ' + authtoken);\n  cy.request({\n    method: 'PUT',\n    url: BaseURL + '/booking/8',\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json',\n      'Accept': 'application/json',\n      'Cookie': 'token=' + authtoken\n    },\n    body: {\n      \"firstname\": payload.firstname,\n      \"lastname\": payload.lastname,\n      \"totalprice\": payload.totalprice,\n      \"depositpaid\": payload.depositpaid,\n      \"bookingdates\": payload.bookingdates,\n      \"additionalneeds\": payload.additionalneeds\n    }\n  }).then(res => {\n    expect(res.status).to.equal(200);\n  });\n});",
+              "err": {},
+              "uuid": "db84afed-0b12-4966-a4be-4da5a327c35f",
+              "parentUUID": "9bd5defc-80e4-496d-b330-95e1d80ee873",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Partially updating a booking with auth token",
+              "fullTitle": "Updating details of Bookings Partially updating a booking with auth token",
+              "timedOut": null,
+              "duration": 785,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting the Auth token\n  method: 'POST',\n  url: BaseURL + '/auth',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: {\n    \"username\": \"admin\",\n    \"password\": \"password123\"\n  }\n}).then(res => {\n  //\n  expect(res.status).to.equal(200);\n  const authtoken = res.body.token;\n  cy.log('Token is ' + authtoken);\n  cy.request({\n    method: 'PATCH',\n    url: BaseURL + '/booking/8',\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json',\n      'Accept': 'application/json',\n      'Cookie': 'token=' + authtoken\n    },\n    body: {\n      \"firstname\": payload.firstname,\n      \"lastname\": payload.lastname\n    }\n  }).then(res => {\n    expect(res.status).to.equal(200);\n  });\n});",
+              "err": {},
+              "uuid": "3fb2e5c4-e80f-4aa6-834f-1d50f7592e95",
+              "parentUUID": "9bd5defc-80e4-496d-b330-95e1d80ee873",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "700ed6e2-5285-4467-9181-2d36bfab136d",
+            "db84afed-0b12-4966-a4be-4da5a327c35f",
+            "3fb2e5c4-e80f-4aa6-834f-1d50f7592e95"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1905,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.0.1"
+    }
+  }
+}

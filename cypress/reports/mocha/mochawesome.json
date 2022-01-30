@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-01-30T09:03:37.234Z",
+    "end": "2022-01-30T09:03:42.079Z",
+    "duration": 4845,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5cdc239c-a68e-4df4-8caf-7bb372691579",
+      "title": "",
+      "fullFile": "cypress/integration/api_tests/delete_booking.js",
+      "file": "cypress/integration/api_tests/delete_booking.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9c69ec55-0bfd-4839-bbf0-a21f8a6ef7e8",
+          "title": "Deleting a booking",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User should be able to delete an already exisitng booking",
+              "fullTitle": "Deleting a booking User should be able to delete an already exisitng booking",
+              "timedOut": null,
+              "duration": 3274,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting the Auth token\n  method: 'POST',\n  url: BaseURL + '/auth',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: {\n    \"username\": \"admin\",\n    \"password\": \"password123\"\n  }\n}).then(res => {\n  expect(res.status).to.equal(200);\n  const authtoken = res.body.token;\n  cy.log('Token is ' + authtoken);\n  cy.request({\n    method: 'GET',\n    url: BaseURL + '/booking',\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json'\n    }\n  }).then(res => {\n    //Getting one bookingid and then using it to delete that booking\n    const bookingID = res.body[2].bookingid;\n    cy.request({\n      method: 'DELETE',\n      url: BaseURL + '/booking/' + bookingID,\n      failOnStatusCode: false,\n      headers: {\n        'Content-Type': 'application/json',\n        'Accept': 'application/json',\n        'Cookie': 'token=' + authtoken\n      }\n    }).then(res => {\n      expect(res.status).to.equal(201);\n    });\n  });\n});",
+              "err": {},
+              "uuid": "6e678230-d7de-4520-9218-64e8f77193de",
+              "parentUUID": "9c69ec55-0bfd-4839-bbf0-a21f8a6ef7e8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User should not be able to delete without authorisation",
+              "fullTitle": "Deleting a booking User should not be able to delete without authorisation",
+              "timedOut": null,
+              "duration": 750,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: BaseURL + '/booking',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  }\n}).then(res => {\n  //Getting one bookingid and then using it to delete that booking\n  const bookingID = res.body[2].bookingid;\n  cy.request({\n    method: 'DELETE',\n    url: BaseURL + '/booking/' + bookingID,\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json',\n      'Accept': 'application/json'\n    }\n  }).then(res => {\n    expect(res.status).to.equal(403);\n  });\n});",
+              "err": {},
+              "uuid": "07e4e9a1-42a8-4070-a229-804424013d18",
+              "parentUUID": "9c69ec55-0bfd-4839-bbf0-a21f8a6ef7e8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User should not be able to delete a non existent booking",
+              "fullTitle": "Deleting a booking User should not be able to delete a non existent booking",
+              "timedOut": null,
+              "duration": 795,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  //Getting the Auth token\n  method: 'POST',\n  url: BaseURL + '/auth',\n  failOnStatusCode: false,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: {\n    \"username\": \"admin\",\n    \"password\": \"password123\"\n  }\n}).then(res => {\n  expect(res.status).to.equal(200);\n  const authtoken = res.body.token;\n  cy.log('Token is ' + authtoken);\n  cy.request({\n    method: 'DELETE',\n    url: BaseURL + '/booking/0',\n    failOnStatusCode: false,\n    headers: {\n      'Content-Type': 'application/json',\n      'Accept': 'application/json',\n      'Cookie': 'token=' + authtoken\n    }\n  }).then(res => {\n    expect(res.status).to.equal(405);\n  });\n});",
+              "err": {},
+              "uuid": "8ec90cb1-266d-4ae6-a31d-2d2c3b788f50",
+              "parentUUID": "9c69ec55-0bfd-4839-bbf0-a21f8a6ef7e8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6e678230-d7de-4520-9218-64e8f77193de",
+            "07e4e9a1-42a8-4070-a229-804424013d18",
+            "8ec90cb1-266d-4ae6-a31d-2d2c3b788f50"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4819,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.0.1"
+    }
+  }
+}
